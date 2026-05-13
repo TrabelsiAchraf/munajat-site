@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Munajat — Daily adhkar &amp; dua, beautifully on iPhone</title>
+<meta name="description" content="A privacy-first iOS app for the morning, evening and sleep adhkar from Hisn al-Muslim. Built-in counter, audio recitations, daily streak, widget — in Arabic, French and English.">
+<meta property="og:title" content="Munajat — Daily adhkar &amp; dua, beautifully on iPhone">
+<meta property="og:description" content="The adhkar from Hisn al-Muslim in a polished iOS app — counter, audio, daily streak, widget. No tracking, works offline.">
+<meta property="og:type" content="website">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%8C%99%3C/text%3E%3C/svg%3E">
+<style>
+  :root {
+    --bg: #0a0f1f;
+    --bg-2: #14132a;
+    --fg: #f5f5f7;
+    --fg-dim: #a8a5c2;
+    --accent: #ff9f1c;
+    --accent-2: #d4af37;
+    --card: rgba(255, 255, 255, 0.04);
+    --border: rgba(255, 255, 255, 0.08);
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Helvetica Neue", sans-serif;
+    background: var(--bg);
+    color: var(--fg);
+    line-height: 1.5;
+    overflow-x: hidden;
+  }
+  a { color: inherit; text-decoration: none; }
+  .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+
+  body::before, body::after {
+    content: "";
+    position: fixed;
+    width: 600px;
+    height: 600px;
+    border-radius: 50%;
+    filter: blur(120px);
+    z-index: -1;
+    pointer-events: none;
+  }
+  body::before {
+    top: -200px; left: -200px;
+    background: radial-gradient(circle, rgba(255, 159, 28, 0.28), transparent 70%);
+  }
+  body::after {
+    bottom: -200px; right: -200px;
+    background: radial-gradient(circle, rgba(212, 175, 55, 0.22), transparent 70%);
+  }
+
+  nav {
+    position: sticky; top: 0; z-index: 100;
+    backdrop-filter: saturate(180%) blur(20px);
+    -webkit-backdrop-filter: saturate(180%) blur(20px);
+    background: rgba(10, 15, 31, 0.7);
+    border-bottom: 1px solid var(--border);
+  }
+  nav .container {
+    display: flex; align-items: center; justify-content: space-between;
+    height: 64px;
+  }
+  .logo {
+    font-weight: 700; font-size: 18px; letter-spacing: -0.3px;
+    display: flex; align-items: center; gap: 10px;
+  }
+  .logo-icon {
+    width: 28px; height: 28px; border-radius: 7px;
+    background: linear-gradient(135deg, var(--accent), var(--accent-2));
+    display: flex; align-items: center; justify-content: center;
+    font-size: 16px;
+  }
+  nav ul {
+    display: flex; gap: 32px; list-style: none;
+    font-size: 14px; color: var(--fg-dim);
+  }
+  nav ul a:hover { color: var(--fg); }
+  @media (max-width: 720px) { nav ul { display: none; } }
+
+  .btn {
+    display: inline-flex; align-items: center; gap: 10px;
+    padding: 14px 26px; border-radius: 999px;
+    font-size: 15px; font-weight: 600;
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+    border: none; cursor: pointer;
+  }
+  .btn-primary {
+    background: linear-gradient(135deg, var(--accent), var(--accent-2));
+    color: #1a0c00;
+    box-shadow: 0 10px 40px rgba(255, 159, 28, 0.35);
+  }
+  .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 16px 50px rgba(255, 159, 28, 0.5); }
+  .btn-secondary {
+    background: var(--card); color: var(--fg);
+    border: 1px solid var(--border);
+  }
+  .btn-secondary:hover { background: rgba(255, 255, 255, 0.08); }
+
+  .hero { padding: 100px 0 80px; text-align: center; }
+  .hero .badge {
+    display: inline-block; padding: 6px 14px; border-radius: 999px;
+    background: var(--card); border: 1px solid var(--border);
+    font-size: 13px; color: var(--fg-dim);
+    margin-bottom: 28px;
+  }
+  .hero h1 {
+    font-size: clamp(40px, 6vw, 76px);
+    line-height: 1.05; letter-spacing: -2px; font-weight: 800;
+    background: linear-gradient(180deg, #ffffff 30%, #a8a5c2 100%);
+    -webkit-background-clip: text; background-clip: text; color: transparent;
+    margin-bottom: 24px;
+  }
+  .hero p.lead {
+    font-size: clamp(18px, 2vw, 22px);
+    color: var(--fg-dim);
+    max-width: 640px; margin: 0 auto 40px;
+  }
+  .hero-cta {
+    display: flex; justify-content: center; gap: 16px; flex-wrap: wrap;
+    margin-bottom: 60px;
+  }
+  .hero-image {
+    max-width: 360px; width: 100%;
+    border-radius: 18px;
+    box-shadow: 0 30px 100px rgba(0, 0, 0, 0.5), 0 0 0 1px var(--border);
+  }
+
+  section { padding: 100px 0; }
+  section h2 {
+    font-size: clamp(32px, 4vw, 48px); text-align: center;
+    letter-spacing: -1px; font-weight: 800; margin-bottom: 16px;
+    background: linear-gradient(180deg, #ffffff 50%, #a8a5c2 100%);
+    -webkit-background-clip: text; background-clip: text; color: transparent;
+  }
+  section .subtitle {
+    text-align: center; color: var(--fg-dim);
+    font-size: 18px; max-width: 560px; margin: 0 auto 60px;
+  }
+
+  .features {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 20px;
+  }
+  .feature {
+    padding: 32px; border-radius: 18px;
+    background: var(--card); border: 1px solid var(--border);
+    transition: transform 0.2s ease, border-color 0.2s ease;
+  }
+  .feature:hover { transform: translateY(-4px); border-color: rgba(255, 159, 28, 0.4); }
+  .feature .icon {
+    width: 48px; height: 48px; border-radius: 12px;
+    background: linear-gradient(135deg, rgba(255, 159, 28, 0.22), rgba(212, 175, 55, 0.22));
+    display: flex; align-items: center; justify-content: center;
+    font-size: 24px; margin-bottom: 20px;
+  }
+  .feature h3 { font-size: 18px; margin-bottom: 8px; font-weight: 700; }
+  .feature p { color: var(--fg-dim); font-size: 15px; }
+
+  .shots {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 24px;
+  }
+  .shots img {
+    width: 100%; border-radius: 18px;
+    border: 1px solid var(--border);
+    transition: transform 0.3s ease;
+  }
+  .shots img:hover { transform: scale(1.02); }
+
+  .pricing-card {
+    max-width: 440px; margin: 0 auto; padding: 48px 40px;
+    text-align: center;
+    background: linear-gradient(180deg, rgba(255, 159, 28, 0.12), rgba(212, 175, 55, 0.04));
+    border: 1px solid rgba(255, 159, 28, 0.3);
+    border-radius: 24px;
+    box-shadow: 0 30px 80px rgba(255, 159, 28, 0.15);
+  }
+  .pricing-card .price {
+    font-size: 64px; font-weight: 800; letter-spacing: -2px;
+    margin: 16px 0 8px;
+    background: linear-gradient(135deg, var(--accent), var(--accent-2));
+    -webkit-background-clip: text; background-clip: text; color: transparent;
+  }
+  .pricing-card .price-note { color: var(--fg-dim); font-size: 15px; margin-bottom: 32px; }
+  .pricing-card ul { list-style: none; text-align: left; margin-bottom: 32px; }
+  .pricing-card li {
+    padding: 10px 0; color: var(--fg-dim); font-size: 15px;
+    display: flex; align-items: center; gap: 10px;
+  }
+  .pricing-card li::before { content: "✓"; color: var(--accent); font-weight: 700; }
+
+  footer {
+    padding: 60px 0 40px; border-top: 1px solid var(--border);
+    text-align: center; color: var(--fg-dim); font-size: 14px;
+  }
+  footer .links {
+    display: flex; justify-content: center; gap: 28px; margin-bottom: 20px;
+    flex-wrap: wrap;
+  }
+  footer .links a:hover { color: var(--fg); }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="container">
+    <a href="#" class="logo">
+      <span class="logo-icon">🌙</span>
+      Munajat
+    </a>
+    <ul>
+      <li><a href="#features">Features</a></li>
+      <li><a href="#screenshots">Screenshots</a></li>
+      <li><a href="#price">Price</a></li>
+      <li><a href="support.html">Support</a></li>
+    </ul>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="container">
+    <span class="badge">✨ Coming to the App Store</span>
+    <h1>Your daily adhkar,<br>beautifully on iPhone.</h1>
+    <p class="lead">The adhkar from <em>Hisn al-Muslim</em> by Sheikh Saʿīd al-Qaḥṭānī in a polished iOS app. Counter, audio recitations, daily streak, widget — in Arabic, French and English. No tracking, works offline.</p>
+    <div class="hero-cta">
+      <a href="#" class="btn btn-primary">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.05 12.04c-.03-3.18 2.6-4.71 2.72-4.78-1.49-2.17-3.79-2.47-4.61-2.5-1.96-.2-3.83 1.16-4.83 1.16-1.01 0-2.55-1.13-4.19-1.1-2.16.03-4.15 1.26-5.27 3.19-2.25 3.9-.58 9.66 1.61 12.83 1.07 1.55 2.34 3.29 4 3.23 1.61-.07 2.22-1.04 4.16-1.04 1.94 0 2.49 1.04 4.19 1 1.73-.03 2.83-1.57 3.89-3.13 1.23-1.79 1.74-3.53 1.77-3.62-.04-.02-3.4-1.31-3.44-5.19zM13.92 3.2c.89-1.08 1.49-2.59 1.32-4.08-1.28.05-2.83.85-3.76 1.93-.83.96-1.55 2.49-1.36 3.96 1.43.11 2.9-.73 3.8-1.81z"/></svg>
+        Coming soon on the App Store
+      </a>
+      <a href="support.html" class="btn btn-secondary">
+        Read FAQ
+      </a>
+    </div>
+    <img src="hero.png" alt="Munajat showing the morning adhkar on iPhone" class="hero-image">
+  </div>
+</header>
+
+<section id="features">
+  <div class="container">
+    <h2>Built for daily remembrance</h2>
+    <p class="subtitle">Everything you need to keep the habit, nothing you don't.</p>
+    <div class="features">
+      <div class="feature">
+        <div class="icon">📖</div>
+        <h3>133 categories</h3>
+        <p>Morning, evening and sleep adhkar plus Qur'an, travel, food, healing, Hajj and more — every situation covered.</p>
+      </div>
+      <div class="feature">
+        <div class="icon">✨</div>
+        <h3>Authentic source</h3>
+        <p>Every dhikr comes from <em>Hisn al-Muslim</em> by Sheikh Saʿīd al-Qaḥṭānī. References shown when available.</p>
+      </div>
+      <div class="feature">
+        <div class="icon">🔢</div>
+        <h3>Tap-to-count</h3>
+        <p>A built-in counter for every dhikr. Tap the big circle to increment, progress bar shows where you are.</p>
+      </div>
+      <div class="feature">
+        <div class="icon">🎧</div>
+        <h3>Audio recitations</h3>
+        <p>Professional recitations streamed from hisnmuslim.com. Tap Listen to hear the dhikr while you read it.</p>
+      </div>
+      <div class="feature">
+        <div class="icon">🌐</div>
+        <h3>Trilingual</h3>
+        <p>Arabic original with full vocalisation, plus French and English translation and transliteration. Pick your language in Settings.</p>
+      </div>
+      <div class="feature">
+        <div class="icon">❤️</div>
+        <h3>Favorites</h3>
+        <p>Tap the heart on any category card to keep it one tap away in your Favorites tab.</p>
+      </div>
+      <div class="feature">
+        <div class="icon">🔍</div>
+        <h3>Search</h3>
+        <p>Find a dhikr by title, category or Arabic text. Works fully offline.</p>
+      </div>
+      <div class="feature">
+        <div class="icon">🔔</div>
+        <h3>Customizable reminders</h3>
+        <p>Set the exact times for morning, evening and sleep adhkar reminders. Local notifications, no server involved.</p>
+      </div>
+      <div class="feature">
+        <div class="icon">🔥</div>
+        <h3>Daily streak</h3>
+        <p>A streak counter lights up the moment you read your first dhikr of the day. Skip a day, lose the streak.</p>
+      </div>
+      <div class="feature">
+        <div class="icon">📲</div>
+        <h3>Home Screen widget</h3>
+        <p>The suggested dhikr for the current period (morning, day, evening) — visible without opening the app.</p>
+      </div>
+      <div class="feature">
+        <div class="icon">📤</div>
+        <h3>Share as a card</h3>
+        <p>Generate a beautifully formatted image of any dhikr, ready to send to loved ones in any messaging app.</p>
+      </div>
+      <div class="feature">
+        <div class="icon">🔒</div>
+        <h3>Privacy first</h3>
+        <p>No account, no tracking, no analytics, no ads. Everything is stored on your device. Audio loads from the web with no identifier.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="screenshots">
+  <div class="container">
+    <h2>See it in action</h2>
+    <p class="subtitle">A calm, native iOS experience for daily remembrance.</p>
+    <div class="shots">
+      <img src="shot-1.png" alt="Munajat home screen showing the suggested adhkar for the current period">
+      <img src="shot-2.png" alt="Munajat dhikr detail with counter and audio button">
+      <img src="shot-3.png" alt="Munajat favorites screen">
+      <img src="shot-4.png" alt="Munajat settings screen with notification reminders">
+    </div>
+  </div>
+</section>
+
+<section id="price">
+  <div class="container">
+    <h2>Free, forever.</h2>
+    <p class="subtitle">No subscription. No in-app purchases. No ads. Made as a gift for the community.</p>
+    <div class="pricing-card">
+      <div class="price">Free</div>
+      <div class="price-note">All features included · all future updates included</div>
+      <ul>
+        <li>133 categories of adhkar &amp; dua</li>
+        <li>Tap-to-count counter on every dhikr</li>
+        <li>Audio recitations for every entry</li>
+        <li>Arabic / French / English</li>
+        <li>Favorites &amp; full-text search</li>
+        <li>Customizable daily reminders</li>
+        <li>Daily streak with history</li>
+        <li>Home Screen widget</li>
+        <li>Share any dhikr as an image</li>
+        <li>No tracking, no ads, no account</li>
+      </ul>
+      <a href="#" class="btn btn-primary" style="width: 100%; justify-content: center;">
+        Coming soon on the App Store
+      </a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div class="links">
+      <a href="support.html">Support</a>
+      <a href="privacy.html">Privacy Policy</a>
+      <a href="https://github.com/TrabelsiAchraf/Munajat">GitHub</a>
+      <a href="mailto:trabelsiachraf.devapps@gmail.com">Contact</a>
+    </div>
+    <p>© 2026 Achraf Trabelsi · Munajat is built with ❤️ for the community</p>
+  </div>
+</footer>
+
+</body>
+</html>

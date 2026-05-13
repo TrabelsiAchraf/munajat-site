@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Munajat — Privacy Policy</title>
+<style>
+  body { font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", sans-serif; max-width: 720px; margin: 40px auto; padding: 0 24px; color: #1d1d1f; line-height: 1.6; }
+  h1 { font-size: 32px; margin-bottom: 4px; }
+  h2 { font-size: 20px; margin-top: 32px; }
+  .updated { color: #6e6e73; font-size: 14px; margin-bottom: 32px; }
+  a { color: #b8740c; }
+  code { background: #f5f5f7; padding: 2px 6px; border-radius: 4px; font-size: 90%; }
+</style>
+</head>
+<body>
+
+<h1>Munajat — Privacy Policy</h1>
+<p class="updated">Last updated: May 13, 2026</p>
+
+<p>Munajat ("the app") is a native iOS application that displays the adhkar from <em>Hisn al-Muslim</em> by Sheikh Saʿīd al-Qaḥṭānī. This Privacy Policy explains how the app handles data.</p>
+
+<h2>Data Collection</h2>
+<p><strong>Munajat does not collect any personal data.</strong> The app has no user account, does not connect to any backend, does not include analytics, and does not include advertising or tracking SDKs.</p>
+
+<h2>Locally Stored Data</h2>
+<p>The following data is stored exclusively on your device and never leaves it:</p>
+<ul>
+  <li>Per-dhikr counters (reset at the start of each day)</li>
+  <li>Favorite categories</li>
+  <li>Notification time preferences (morning, evening, sleep)</li>
+  <li>Daily streak history (which days you read at least one dhikr)</li>
+</ul>
+<p>This data is stored in iOS's standard local storage (UserDefaults and SwiftData) inside the app's sandbox. Uninstalling the app removes all of it.</p>
+
+<h2>Network Activity</h2>
+<p>The only network use is the optional audio recitation playback. When you tap <strong>Listen</strong> on a dhikr, the app streams the audio file from <a href="https://hisnmuslim.com">hisnmuslim.com</a>. No identifier, account or analytics token is sent with the request — only the standard HTTP headers your iOS device produces for any web download. If you never tap Listen, the app makes no network requests at all.</p>
+
+<h2>Notifications</h2>
+<p>Reminders for morning, evening and sleep adhkar are scheduled locally by iOS using the standard <code>UserNotifications</code> framework. They never pass through any server.</p>
+
+<h2>Third-Party Services</h2>
+<p>Munajat does not use any third-party SDK, framework or service that collects data. The only external dependency is the audio CDN at hisnmuslim.com (above), which the app contacts only on explicit user action.</p>
+
+<h2>Children's Privacy</h2>
+<p>Munajat does not knowingly collect any data from children or anyone else.</p>
+
+<h2>Changes to This Policy</h2>
+<p>If this policy is updated, the new version will be published at this URL with an updated "Last updated" date.</p>
+
+<h2>Contact</h2>
+<p>Questions about this Privacy Policy? Contact: <a href="mailto:trabelsiachraf.devapps@gmail.com">trabelsiachraf.devapps@gmail.com</a></p>
+
+<p><a href="support.html">Support</a> · <a href="index.html">Back to home</a></p>
+
+</body>
+</html>

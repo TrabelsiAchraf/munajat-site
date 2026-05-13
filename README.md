@@ -9,6 +9,7 @@ Live URLs:
 - Home: <https://trabelsiachraf.github.io/munajat-site/>
 - Support: <https://trabelsiachraf.github.io/munajat-site/support.html>
 - Privacy: <https://trabelsiachraf.github.io/munajat-site/privacy.html>
+- Accessibility: <https://trabelsiachraf.github.io/munajat-site/accessibility.html>
 
 ## Local preview
 

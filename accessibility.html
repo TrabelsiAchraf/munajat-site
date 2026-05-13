@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Munajat — Accessibility</title>
+<style>
+  body { font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", sans-serif; max-width: 720px; margin: 40px auto; padding: 0 24px; color: #1d1d1f; line-height: 1.6; }
+  h1 { font-size: 32px; margin-bottom: 4px; }
+  h2 { font-size: 20px; margin-top: 32px; }
+  h3 { font-size: 17px; margin-top: 20px; }
+  .updated { color: #6e6e73; font-size: 14px; margin-bottom: 32px; }
+  a { color: #b8740c; }
+  code { background: #f5f5f7; padding: 2px 6px; border-radius: 4px; font-size: 90%; }
+  ul.features { list-style: none; padding: 0; }
+  ul.features li {
+    padding: 14px 16px; margin: 8px 0; border-radius: 10px;
+    background: #f5f5f7; border-left: 3px solid #b8740c;
+  }
+  ul.features li strong { display: block; margin-bottom: 4px; }
+</style>
+</head>
+<body>
+
+<h1>Munajat — Accessibility</h1>
+<p class="updated">Last updated: May 13, 2026</p>
+
+<p>Accessibility is a first-class concern in Munajat. The app is built with SwiftUI and carries explicit VoiceOver labels, hints and values on every interactive control. This page lists which iOS accessibility features are supported on iPhone and iPad, and which are not yet supported so you know what to expect.</p>
+
+<h2>Supported features</h2>
+
+<ul class="features">
+  <li>
+    <strong>VoiceOver</strong>
+    Every category card, counter, audio button, share action and tab is labelled. The counter announces the current and target count (e.g. <em>"Counter, 4 of 33"</em>). Decorative patterns (crescents, stars) are marked as such so VoiceOver skips them. Labels are localised in Arabic, French and English.
+  </li>
+  <li>
+    <strong>Voice Control</strong>
+    All interactive elements expose a name to the system, so Voice Control commands like "Tap Listen", "Tap Share", "Tap Adhkar du matin" work without configuration.
+  </li>
+  <li>
+    <strong>Larger Text (Dynamic Type)</strong>
+    All body and UI text uses the system's semantic font styles (<code>.body</code>, <code>.headline</code>, <code>.subheadline</code>, <code>.footnote</code>, <code>.caption</code>) so they scale with the Larger Text setting and with Bold Text.
+  </li>
+  <li>
+    <strong>Differentiate Without Color</strong>
+    No action or state in Munajat is communicated by colour alone. Favorite hearts are filled when active, the counter shows a numeric value, the streak shows a digit, and tabs are paired with icons and text labels.
+  </li>
+  <li>
+    <strong>Dark Interface</strong>
+    Munajat runs in a deep-navy dark theme at all times by design. Users with light sensitivity have a calm, dark UI without needing to flip the system appearance.
+  </li>
+  <li>
+    <strong>Sufficient Contrast</strong>
+    The primary palette (white text and warm orange on deep navy) exceeds WCAG AAA contrast ratios for body text. The app uses system semantic colours and asset-catalogue variants that respect the "Increase Contrast" setting.
+  </li>
+</ul>
+
+<h2>Not yet supported</h2>
+
+<h3>Reduce Motion</h3>
+<p>The dhikr detail screen has subtle animations (a pulsing hint on the counter and a celebration overlay when a category is completed). These currently play even when "Reduce Motion" is enabled. A future update will gate them behind <code>@Environment(\.accessibilityReduceMotion)</code>.</p>
+
+<h3>Captions for audio recitations</h3>
+<p>Audio recitations have no time-synchronised captions. However, the full vocalised Arabic text and its translation are always displayed on the same screen as the audio, so the spoken content is visually present while listening.</p>
+
+<h2>Reporting issues</h2>
+<p>If you hit an accessibility issue or want to suggest an improvement, email <a href="mailto:trabelsiachraf.devapps@gmail.com">trabelsiachraf.devapps@gmail.com</a>. Accessibility feedback is treated as a priority.</p>
+
+<p><a href="support.html">Support</a> · <a href="privacy.html">Privacy Policy</a> · <a href="index.html">Back to home</a></p>
+
+</body>
+</html>

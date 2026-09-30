@@ -5,6 +5,17 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Munajat — Accessibility</title>
 <style>
+  :root {
+    --bg: #0a0f1f;
+    --bg-2: #14132a;
+    --fg: #f5f5f7;
+    --fg-dim: #a8a5c2;
+    --accent: #ff9f1c;
+    --accent-2: #d4af37;
+    --card: rgba(255, 255, 255, 0.04);
+    --border: rgba(255, 255, 255, 0.08);
+  }
+
   body { font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", sans-serif; max-width: 720px; margin: 40px auto; padding: 0 24px; color: #1d1d1f; line-height: 1.6; }
   h1 { font-size: 32px; margin-bottom: 4px; }
   h2 { font-size: 20px; margin-top: 32px; }
@@ -18,6 +29,17 @@
     background: #f5f5f7; border-left: 3px solid #b8740c;
   }
   ul.features li strong { display: block; margin-bottom: 4px; }
+
+  footer {
+    padding: 60px 0 40px; border-top: 1px solid var(--border);
+    text-align: center; color: var(--fg-dim); font-size: 14px;
+  }
+  footer .links {
+    display: flex; justify-content: center; gap: 28px; margin-bottom: 20px;
+    flex-wrap: wrap;
+  }
+  footer .links a:hover { color: var(--fg); }
+  .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
 </style>
 </head>
 <body>
@@ -67,7 +89,22 @@
 <h2>Reporting issues</h2>
 <p>If you hit an accessibility issue or want to suggest an improvement, email <a href="mailto:trabelsiachraf.devapps@gmail.com">trabelsiachraf.devapps@gmail.com</a>. Accessibility feedback is treated as a priority.</p>
 
-<p><a href="support.html">Support</a> · <a href="privacy.html">Privacy Policy</a> · <a href="index.html">Back to home</a></p>
+<p><a href="https://trabelsiachraf.com/munajat-site/support.html">Support</a> · <a href="https://trabelsiachraf.com/munajat-site/privacy.html">Privacy Policy</a> · <a href="https://trabelsiachraf.com/munajat-site/">Back to home</a></p>
+
+<footer>
+  <div class="container">
+    <div class="links">
+      <a href="https://trabelsiachraf.com/munajat-site/">Home</a>
+      <a href="https://trabelsiachraf.com/munajat-site/support.html">Support</a>
+      <a href="https://trabelsiachraf.com/munajat-site/privacy.html">Privacy Policy</a>
+      <a href="https://trabelsiachraf.com/munajat-site/accessibility.html">Accessibility</a>
+      <a href="https://apps.apple.com/app/id6768824373">App Store</a>
+      <a href="https://github.com/TrabelsiAchraf/Munajat">GitHub</a>
+      <a href="mailto:trabelsiachraf.devapps@gmail.com">Contact</a>
+    </div>
+    <p>© 2026 <a href="https://trabelsiachraf.com/">Achraf Trabelsi</a> · Munajat is built with ❤️ for the community</p>
+  </div>
+</footer>
 
 </body>
 </html>

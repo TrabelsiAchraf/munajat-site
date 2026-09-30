@@ -4,12 +4,15 @@ Marketing website for [Munajat — Dhikr & Dua](https://github.com/TrabelsiAchra
 
 Hosted via GitHub Pages from this repository's `main` branch root.
 
-Live URLs:
+## Links
 
-- Home: <https://trabelsiachraf.github.io/munajat-site/>
-- Support: <https://trabelsiachraf.github.io/munajat-site/support.html>
-- Privacy: <https://trabelsiachraf.github.io/munajat-site/privacy.html>
-- Accessibility: <https://trabelsiachraf.github.io/munajat-site/accessibility.html>
+- Website: <https://trabelsiachraf.com/munajat-site/>
+- Support: <https://trabelsiachraf.com/munajat-site/support.html>
+- Privacy: <https://trabelsiachraf.com/munajat-site/privacy.html>
+- Accessibility: <https://trabelsiachraf.com/munajat-site/accessibility.html>
+- App Store: <https://apps.apple.com/app/id6768824373>
+- App source: <https://github.com/TrabelsiAchraf/Munajat>
+- Contact: <trabelsiachraf.devapps@gmail.com>
 
 ## Local preview
 
@@ -24,6 +27,3 @@ python3 -m http.server 8000
 
 The marketing images come from the Munajat repo (`marketing/raw/en/` for the in-app captures and `marketing/out/en/01_home.png` for the styled hero). Replace `hero.png` / `shot-1.png` … `shot-4.png` as the app evolves.
 
-## Updating the App Store link
-
-Once the app is approved, replace every `<a href="#">` pointing to the App Store CTA in `index.html` (search for `Coming soon on the App Store`).
